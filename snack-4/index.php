@@ -12,9 +12,26 @@
         <main>
             <ul>
 
-                <?php foreach ($classi as $classe => $key) { ?>
+                <?php foreach ($classi as $key => $classe) { ?>
                     <li>
-                        <?php echo   $classe ?>
+                        <?= $key ?>
+
+                        <?php foreach ($classe as $key => $studenti) { ?>
+
+                            <ul>
+                                <li>
+                                    <p><?= 'Matricola Nr. :' . $studenti['id'] ?></p>
+                                    <p><?= 'Nome: ' . $studenti['nome'] ?></p>
+                                    <p><?= 'Cognome: ' . $studenti['cognome'] ?></p>
+                                    <p><?= 'Età: ' . $studenti['anni'] ?></p>
+                                    <p><?= 'Voto: ' . $studenti['voto_medio'] ?></p>
+                                    <p><?= 'Linguaggio preferito: ' . $studenti['linguaggio_preferito'] ?></p>
+                                    <div><img <?= 'src="' . $studenti['immagine'] . '"' . 'alt="Foto di ' . $studenti['nome'] . ' ' . $studenti['cognome'] . '"' ?>></div>
+                                    <p></p>
+                                </li>
+                            </ul>
+                        <?php } ?>
+
                     </li>
                 <?php } ?>
 
