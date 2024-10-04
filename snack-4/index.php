@@ -10,7 +10,15 @@
 
     <body>
         <main>
+            <ul>
 
+                <?php foreach ($classi as $classe => $key) { ?>
+                    <li>
+                        <?php echo   $classe ?>
+                    </li>
+                <?php } ?>
+
+            </ul>
         </main>
     </body>
 
