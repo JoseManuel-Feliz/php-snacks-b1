@@ -1,3 +1,4 @@
+<?php include  __DIR__ . "/partials/vars.php"; ?>
 <! DOCTYPE html>
     <html lang="en">
 
@@ -8,7 +9,9 @@
     </head>
 
     <body>
+        <main>
 
+        </main>
     </body>
 
     </html>
