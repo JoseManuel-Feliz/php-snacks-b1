@@ -8,11 +8,14 @@ $sufficient_grade = 6;
 
 /*<?php isset($filter_grade) && (!empty($filter_grade)) ? $filter_grade : $filter_grade=10  ?>*/
 
-$students_copy = [];
 $filter_grade = isset($_GET['grade'])&& $_GET['grade'] ? $_GET['grade']: 10;
+
 $filter_programming_lang = isset($_GET['programming_lang']) && $_GET['programming_lang'] !=='' ?
 $_GET['programming_lang']:
 null ;
+
+$filter_class = isset($_GET['class']) && $_GET['class'] !=='' ? $_GET['class']: null;
+
 var_dump($filter_programming_lang,$filter_grade);
 var_dump( (!empty($filter_grade)&&isset($filter_grade)) ? 'grade non è vuoto ed è settato' : ' grade è vuoto ed è non
 settato');
@@ -33,8 +36,24 @@ settato');
                 <form action="index.php" method="get">
 
                     <div>
+                        <label for="class">classe</label>
+                        <input type="text" name="class" id="programming_lang">
+
+                        <label for="name">name</label>
+                        <input type="text" name="name" id="programming_lang">
+
+                        <label for="last_name">lastname</label>
+                        <input type="text" name="last_name" id="programming_lang">
+
+
+                        <label for="garde">grade</label>
                         <input type="number" name="grade" id="grade">
+
+                        <label for="programming_lang">programming_lang</label>
                         <input type="text" name="programming_lang" id="programming_lang">
+
+                        <label for="id">id</label>
+                        <input type="text" name="id" id="programming_lang">
                     </div>
                     <div>
                         <button type="submit">send</button>
@@ -48,6 +67,7 @@ settato');
             <ul>
                 <?php foreach ($classi as $classroom => $class) { ?>
                 <li>
+                    <?php if  ($filter_class==null|| str_contains(strtolower($classroom), strtolower($filter_class))){ ?>
                     <?= $classroom ?>
 
                     <?php foreach ($class as $key => $students) { ?>
@@ -72,6 +92,7 @@ settato');
                     <?php } ?>
 
                 </li>
+                <?php } ?>
                 <?php } ?>
         </main>
 
