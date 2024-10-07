@@ -1,9 +1,11 @@
 <?php  
 $form_word = isset($_GET['word'] )&& $_GET['word']!=='' ? $_GET['word']: null;
-
-$explode_word = explode('', $form_word);
-$to_reverse = array_reverse();
-var_dump($explode_word);
+$reversed_word = '';
+for($i = strlen($form_word)-1;$i>=0;$i--){
+//var_dump( substr($form_word,$i,1));
+$reversed_word  .=$form_word[$i];
+};
+var_dump($reversed_word);
 ?>
 
 
@@ -20,10 +22,14 @@ var_dump($explode_word);
 <body>
     <main>
         <h2><?= $form_word?></h2>
+
         <form action="index.php" method="get">
             <input type="text" name="word" id="word">
-            <button type="submit">send</button>
-            <button type="reset">rest</button>
+
+            <div>
+                <button type="submit">send</button>
+                <button type="reset">rest</button>
+            </div>
         </form>
     </main>
 </body>
