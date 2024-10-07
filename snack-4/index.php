@@ -16,6 +16,12 @@ null ;
 
 $filter_class = isset($_GET['class']) && $_GET['class'] !=='' ? $_GET['class']: null;
 
+$filter_name = isset($_GET['name']) && $_GET['name'] !=='' ? $_GET['name']: null;
+
+$filter_last_name = isset($_GET['last_name']) && $_GET['last_name'] !=='' ? $_GET['last_name']: null;
+
+$filter_id = isset($_GET['id']) && $_GET['id'] !=='' ? $_GET['id']: null;
+
 var_dump($filter_programming_lang,$filter_grade);
 var_dump( (!empty($filter_grade)&&isset($filter_grade)) ? 'grade non è vuoto ed è settato' : ' grade è vuoto ed è non
 settato');
@@ -72,8 +78,15 @@ settato');
 
                     <?php foreach ($class as $key => $students) { ?>
                     <ul>
+                        <?php if  ($filter_name==null|| str_contains(strtolower($students['nome']), strtolower($filter_name))){ ?>
+
+                        <?php if  ($filter_last_name==null|| str_contains(strtolower($students['cognome']), strtolower($filter_last_name))){ ?>
+
                         <?php if ($students['voto_medio'] <= $filter_grade) { ?>
+
                         <?php if  ($filter_programming_lang==null|| strtolower($students['linguaggio_preferito']) == strtolower($filter_programming_lang)) { ?>
+
+                        <?php if  ($filter_id==null|| str_contains(strtolower($students['id']), strtolower($filter_id))){ ?>
 
                         <li>
                             <p><?= 'Matricola Nr. :' . $students['id'] ?></p>
@@ -86,6 +99,9 @@ settato');
                                     <?= 'src="' . $students['immagine'] . '"' . 'alt="Foto di ' . $students['nome'] . ' ' . $students['cognome'] . '"' ?>>
                             </div>
                         </li>
+                        <?php } ?>
+                        <?php } ?>
+                        <?php } ?>
                         <?php } ?>
                         <?php } ?>
                     </ul>
