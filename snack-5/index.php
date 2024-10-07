@@ -1,10 +1,13 @@
 <?php  
 $form_word = isset($_GET['word'] )&& $_GET['word']!=='' ? $_GET['word']: null;
+
+$message='';
 $reversed_word = '';
 for($i = strlen($form_word)-1;$i>=0;$i--){
-//var_dump( substr($form_word,$i,1));
 $reversed_word  .=$form_word[$i];
 };
+$reversed_word === $form_word? $message = 'è una parola palindroma' :$message ='non è una parola palindroma';
+
 var_dump($reversed_word);
 ?>
 
