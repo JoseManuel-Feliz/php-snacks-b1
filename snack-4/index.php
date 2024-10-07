@@ -4,7 +4,9 @@
 ! previous filter
 $sufficient_grade = 6;
 */
-$filter_grade = $_GET['grade']
+$filter_grade = $_GET['grade'];
+$filter_programming_lang = $_GET['programming_lang'];
+var_dump( (!empty($filter_programmingLang)&&isset($filter_programmingLang)) ? 'non è vuoto ed è settato' : 'è vuoto ed è non settato')
 ?>
 <! DOCTYPE html>
     <html lang="en">
@@ -20,10 +22,19 @@ $filter_grade = $_GET['grade']
         <header>
             <div>
                 <form action="index.php" method="get">
-                    <input type="number" name="grade" id="grade">
+
+                    <div>
+                        <input type="number" name="grade" id="grade">
+                        <input type="text" name="programming_lang" id="programming_lang">
+                    </div>
+                    <div>
+                        <button type="submit">send</button>
+                        <button type="reset">reset</button>
+                    </div>
                 </form>
                 <?php !empty($filter_grade)&&isset($filter_grade) ? $filter_grade : '10'?>
-                <?////= $grade?>
+                <?php empty($filter_programmingLang)&&(!isset($filter_programmingLang)) ? $filter_programming_lang : ''?>
+                <?//= $grade?>
             </div>
         </header>
         <main>
@@ -36,6 +47,7 @@ $filter_grade = $_GET['grade']
 
                     <ul>
                         <?php if ($students['voto_medio'] >= $filter_grade) { ?>
+                        <?php if (strtolower($students['linguaggio_preferito']) == strtolower($filter_programming_lang)) { ?>
                         <li>
                             <p><?= 'Matricola Nr. :' . $students['id'] ?></p>
                             <p><?= 'Nome: ' . $students['nome'] ?></p>
@@ -48,6 +60,7 @@ $filter_grade = $_GET['grade']
                             </div>
                         </li>
                         <?php } ?>
+                        <?php } ?>
                     </ul>
                     <?php } ?>
 
@@ -55,10 +68,10 @@ $filter_grade = $_GET['grade']
                 <?php } ?>
         </main>
 
-        /*
-        !previous filter
-        */
         <!-- <ul>
+            /*
+            !previous filter
+            */
                     <?php //foreach ($classi as $classroom => $class) { ?>
                     <li>
                         <?//=$classroom ?>
