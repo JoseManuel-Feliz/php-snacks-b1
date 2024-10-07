@@ -4,9 +4,18 @@
 ! previous filter
 $sufficient_grade = 6;
 */
-$filter_grade = $_GET['grade'];
-$filter_programming_lang = $_GET['programming_lang'];
-var_dump( (!empty($filter_programmingLang)&&isset($filter_programmingLang)) ? 'non è vuoto ed è settato' : 'è vuoto ed è non settato')
+
+
+/*<?php isset($filter_grade) && (!empty($filter_grade)) ? $filter_grade : $filter_grade=10  ?>*/
+
+$students_copy = [];
+$filter_grade = isset($_GET['grade'])&& $_GET['grade'] ? $_GET['grade']: 10;
+$filter_programming_lang = isset($_GET['programming_lang']) && $_GET['programming_lang'] !=='' ?
+$_GET['programming_lang']:
+null ;
+var_dump($filter_programming_lang,$filter_grade);
+var_dump( (!empty($filter_grade)&&isset($filter_grade)) ? 'grade non è vuoto ed è settato' : ' grade è vuoto ed è non
+settato');
 ?>
 <! DOCTYPE html>
     <html lang="en">
@@ -32,8 +41,6 @@ var_dump( (!empty($filter_programmingLang)&&isset($filter_programmingLang)) ? 'n
                         <button type="reset">reset</button>
                     </div>
                 </form>
-                <?php !empty($filter_grade)&&isset($filter_grade) ? $filter_grade : '10'?>
-                <?php empty($filter_programmingLang)&&(!isset($filter_programmingLang)) ? $filter_programming_lang : ''?>
                 <?//= $grade?>
             </div>
         </header>
@@ -44,10 +51,10 @@ var_dump( (!empty($filter_programmingLang)&&isset($filter_programmingLang)) ? 'n
                     <?= $classroom ?>
 
                     <?php foreach ($class as $key => $students) { ?>
-
                     <ul>
-                        <?php if ($students['voto_medio'] >= $filter_grade) { ?>
-                        <?php if (strtolower($students['linguaggio_preferito']) == strtolower($filter_programming_lang)) { ?>
+                        <?php if ($students['voto_medio'] <= $filter_grade) { ?>
+                        <?php if  ($filter_programming_lang==null|| strtolower($students['linguaggio_preferito']) == strtolower($filter_programming_lang)) { ?>
+
                         <li>
                             <p><?= 'Matricola Nr. :' . $students['id'] ?></p>
                             <p><?= 'Nome: ' . $students['nome'] ?></p>
